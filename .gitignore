@@ -1,4 +1,4 @@
 data/
 eval_data/
-ipynb_checkpoints/
-pycache/
+.ipynb_checkpoints/
+__pycache__/
