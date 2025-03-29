@@ -76,6 +76,6 @@ class DatasetDownloader:
         print("Download complete!")
         print(f"Check '{self.failed_log}' for any failed downloads.")
 
-# Example usage:
-downloader = DatasetDownloader(limit=500)
-downloader.download_images()
+
+# downloader = DatasetDownloader(limit=500)
+# downloader.download_images()

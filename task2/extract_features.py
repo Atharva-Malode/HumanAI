@@ -75,7 +75,7 @@ class FeatureExtractor:
 
         print("Feature extraction completed.")
 
-# Usage
-image_dir = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\data"
-extractor = FeatureExtractor(image_dir)
-extractor.process_images()
+
+# image_dir = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\data"
+# extractor = FeatureExtractor(image_dir)
+# extractor.process_images()
