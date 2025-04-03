@@ -4,6 +4,47 @@ I am **Atharva Malode**, a research fellow at **CSIR-NEERI**, a Government of In
 
 Here are my tasks for the project **ArtExtract: Painting in Painting**.
 
+## Setting Up the Environment
+
+To run the project, follow these steps:
+
+1. **Clone the Repository**
+   
+   Clone the GitHub repository using the following command or download it as a ZIP file:
+   
+   ```bash
+   git clone <repository_link>
+   ```
+
+2. **Create and Activate the Conda Environment**
+   
+   Navigate to the project root directory and create the Conda environment using the `environment.yml` file:
+   
+   ```bash
+   conda env create -f environment.yml
+   conda activate <your_env_name>
+   ```
+
+3. **Run Task 1**
+   
+   Navigate to the `task1` directory:
+   
+   ```bash
+   cd task1
+   ```
+   
+   Open Jupyter Notebook and run `tutorial.ipynb`
+
+4. **Run Task 2**
+   
+   Navigate to the `task2` directory:
+   
+   ```bash
+   cd task2
+   ```
+   
+   Open Jupyter Notebook and run `tutorial.ipynb`:
+
 ## Task 1: Convolutional-Recurrent Architectures
 
 ### Task Description
@@ -74,6 +115,9 @@ Develop a model to find similarities in paintings, such as identifying **portrai
 
 ### Approach Summary  
 The similarity search was performed using feature extraction methods and various similarity metrics. The pipeline involved the following steps:  
+
+### Results : Predictions vs Ground Truth
+![Model Classification Results](assets/task1/predictions.png)
 
 1. **Feature Extraction**:  
    - **ConvNeXt (trained on ImageNet)** and **DINO** were used for feature extraction.  

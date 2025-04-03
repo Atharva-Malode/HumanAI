@@ -73,8 +73,25 @@ Data augmentation techniques such as MixUp, jittering, and contrast adjustments 
    - The evaluation of all three models (Artist, Genre, Style) was performed in the `evaluation.ipynb` file.
    - Metrics were computed, and visualizations were generated to analyze the model performance.
 
+## How to Test the Model
+
+To test the model on new images, follow these steps:
+
+1. **Set Up the Environment**  
+   Follow the environment setup instructions provided in the root `README.md` file.
+
+2. **Open Task 1 Directory**  
+   Navigate to the `task1` folder and open Jupyter Notebook.
+
+3. **Run the Tutorial Notebook**  
+   Open the `tutorial.ipynb` notebook and execute the cells one by one to load the model, preprocess the data, and run predictions.
+
+
 ## Results
 The performance of the CNN-RNN model was evaluated for artist, genre, and style classification. Below are the confusion matrices, key evaluation metrics, and class-wise classification reports for each classification task.
+
+### Model Predictions vs Ground Truth
+![Model Classification Results](../assets/task1/predictions.png)
 
 ### Overall Metrics
 
@@ -152,6 +169,6 @@ The model performs well in genre classification and shows good results for artis
 - **Experiment with Different Class Balancing Techniques:** Instead of class weighting, alternative strategies like focal loss could be tested.
 
 ## Note
-Thank you for the task! I really enjoyed exploring the dataset and hunting for temporal patterns. 🕵️‍♂️ It was a fascinating experience, and I’d love to hear suggestions for further improvements. Also, I am very interested in working on **finding hidden paintings within paintings**! 🖼️✨
+Thank you for the task! I really enjoyed exploring the dataset and hunting for temporal patterns. 🕵️‍♂️ It was a fascinating experience, and I’d love to hear suggestions for further improvements. Also, I am very interested in working on **finding hidden painting within painting**! 🖼️✨
 
 [ArtGAN Dataset](https://github.com/cs-chan/ArtGAN/blob/master/WikiArt%20Dataset/README.md)
