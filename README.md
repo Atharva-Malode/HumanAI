@@ -1,6 +1,7 @@
 # ArtExtract
 
-I am **Atharva Malode**, a research fellow at **CSIR-NEERI**, a Government of India organization for environmental research. I enjoy working in the research and machine learning domain.  
+I am **Atharva Malode**, a fresh graduate and a research fellow at **CSIR-NEERI**, a Government of India organization for environmental research. I graduated few months back and enjoy working in the research and machine learning domain.
+
 
 Here are my tasks for the project **ArtExtract: Painting in Painting**.
 
@@ -75,7 +76,8 @@ Where:
 ![Model Classification Results](assets/task1/predictions.png)
 
 ### Evaluation Metrics  
-To evaluate the model's performance, **accuracy** was used as the primary metric. A detailed explanation of the model implementation and its results can be found in the **Task 1 README file**.  
+To evaluate the model's performance, **F1-score** and **model accuracy on validation data** were used as the primary metrics. A detailed explanation of the model implementation and its results can be found in the **Task 1 README file**.
+
 
 ### Results  
 The model achieved the following classification accuracy:  
