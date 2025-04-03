@@ -37,7 +37,7 @@ class DatasetDownloader:
         full_url = f"{url}/full/full/0/default.jpg"
         retries = 0
 
-        while True:  # Keep retrying until we get a response (avoids timeout skips)
+        while True:  
             try:
                 response = requests.get(full_url, timeout=self.timeout)
                 response.raise_for_status()

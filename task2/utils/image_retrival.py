@@ -58,7 +58,7 @@ class ImageRetrieval:
             x_min, y_min, x_max, y_max = map(int, boxes[0])
             face = image_cv2[y_min:y_max, x_min:x_max]
             face_pil = Image.fromarray(cv2.cvtColor(face, cv2.COLOR_BGR2RGB))
-            return face_pil  # Return PIL Image (not tensor)
+            return face_pil  
     
         return None
 
@@ -81,9 +81,3 @@ class ImageRetrieval:
 
         return results
 
-
-# feature_dir = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\features"
-# query_image = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\web_image.jpg"
-# retrieval = ImageRetrieval(feature_dir, model_name="both", use_face=False)
-# results = retrieval.find_similar_images(query_image)
-# print("Results:", results)

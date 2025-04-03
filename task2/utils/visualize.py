@@ -33,7 +33,7 @@ class TSNEVisualizer:
             if file.endswith(".npy"):
                 feature_path = os.path.join(self.feature_dir, file)
                 features.append(np.load(feature_path))
-                image_names.append(file.replace(".npy", ".jpg"))  # Convert back to image name
+                image_names.append(file.replace(".npy", ".jpg")) 
         
         return np.array(features), image_names
     
@@ -64,7 +64,7 @@ class TSNEVisualizer:
             
             if os.path.exists(image_path):
                 img = Image.open(image_path)
-                img = img.resize((80, 80))  # Larger size for clarity
+                img = img.resize((80, 80))  
                 
                 img_box = ax.inset_axes([x, y, max_size, max_size], transform=ax.transData)
                 img_box.imshow(img)
@@ -73,14 +73,8 @@ class TSNEVisualizer:
         
         # Save the figure before displaying
         plt.tight_layout(pad=0)  # Remove unnecessary padding
-        fig.savefig(self.save_path, bbox_inches="tight", dpi=600)  # High DPI for best quality
+        fig.savefig(self.save_path, bbox_inches="tight", dpi=600) 
         print(f"t-SNE visualization saved as: {self.save_path}")
         
-        plt.show()  # Show the plot after saving
+        plt.show()  
 
-# # Example Usage
-# feature_dir = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\features\without_face\dino"
-# image_dir = r"C:\Users\athar\OneDrive\Desktop\Atharva\Github\open_source\humandArt\task2\data"
-# tsne_vis = TSNEVisualizer(feature_dir, image_dir, model_name="dino")
-# tsne_vis.apply_tsne()
-# tsne_vis.plot_tsne()

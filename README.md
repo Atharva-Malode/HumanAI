@@ -71,6 +71,9 @@ Where:
 - $\sigma$ is standard deviation
 - $\gamma$ is spatial aspect ratio
 
+### Results : Predictions vs Ground Truth
+![Model Classification Results](assets/task1/predictions.png)
+
 ### Evaluation Metrics  
 To evaluate the model's performance, **accuracy** was used as the primary metric. A detailed explanation of the model implementation and its results can be found in the **Task 1 README file**.  
 
@@ -116,8 +119,6 @@ Develop a model to find similarities in paintings, such as identifying **portrai
 ### Approach Summary  
 The similarity search was performed using feature extraction methods and various similarity metrics. The pipeline involved the following steps:  
 
-### Results : Predictions vs Ground Truth
-![Model Classification Results](assets/task1/predictions.png)
 
 1. **Feature Extraction**:  
    - **ConvNeXt (trained on ImageNet)** and **DINO** were used for feature extraction.  
