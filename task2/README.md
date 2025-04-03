@@ -2,11 +2,19 @@
 
 ## Discussion
 
-The goal of this task is to build a model that identifies similarities in paintings, such as portraits with similar faces or poses. The **National Gallery of Art Open Dataset** served as the foundation for this experiment, providing a diverse collection of artworks for analysis. 
+- **Objective:** Develop a model that identifies similarities in paintings, such as portraits with similar faces or poses.  
+- **Dataset:** The **National Gallery of Art Open Dataset** was used, offering a diverse collection of artworks for analysis.  
+- **Feature Extraction:**  
+  - **DINO and ConvNeXt** were utilized to capture deep visual representations of paintings.  
+  - Extracted features were stored in a **"feature" directory**, categorized into:  
+    - **"with_face"** – Features extracted from detected faces using **MTCNN (facenet-pytorch)**.  
+    - **"without_face"** – Features extracted from the entire painting.  
+  - Features were saved in **NumPy (.npy) format** for fast loading and reduced computational overhead.  
+- **Hardware Considerations:**  
+  - **Feature extraction and similarity search were performed on a CPU**, affecting processing speed but ensuring feasibility within resource limits.  
+  - **Pre-extracted features enable rapid similarity retrieval**, eliminating the need for real-time feature extraction.  
 
-**DINO and ConvNeXt were employed for feature extraction**, capturing deep visual representations of paintings. The extracted features were systematically organized to ensure efficient retrieval. To facilitate structured storage, the features were saved in a **"feature" directory**, categorized into two subfolders: **"with_face"** for features extracted from detected faces using **MTCNN** (facenet-pytorch) and **"without_face"** for features extracted from the entire painting. Each extracted feature was stored in **NumPy (.npy) format**, enabling quick loading and reducing computational overhead during similarity search. 
-
-**Due to hardware constraints, feature extraction and similarity search were conducted on a CPU machine**, which impacted processing speed but ensured that the approach remained feasible within available resources. The model utilizes these pre-extracted features, allowing for **rapid similarity retrieval without requiring real-time feature extraction**. This structured approach ensures efficiency in handling large datasets while maintaining retrieval accuracy.
+This structured approach ensures **efficient handling of large datasets** while maintaining retrieval accuracy.
 
 
 ## Implementation
@@ -89,7 +97,7 @@ The results below demonstrate the retrieval performance for a **query image from
 
 #### **t-SNE Visualization of Feature Space**
 A **t-SNE map** was generated to visualize the feature distribution of images extracted using both models.
-![t-SNE Visualization](assets/task2/tsne_visualization.png)
+![t-SNE Visualization](../assets/task2/tsne_visualization.png)
 
 ## **Conclusion and Future Work**
 

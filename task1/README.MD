@@ -1,11 +1,14 @@
 # Task 1: Convolutional-Recurrent Architectures
 
 ## Discussion
-The dataset presents a challenge in arranging proper temporal data, as year information is available for only a subset of images while missing for many others. This limitation prevents direct chronological modeling. Additionally, the dataset consists of high-quality paintings, where capturing texture and brushstroke patterns is crucial for classification.
 
-To extract meaningful features, a Gabor filter was applied to emphasize texture-based details. Furthermore, a pretrained ConvNeXt model (trained on ImageNet) was utilized to extract deep feature representations from the paintings. These extracted features were then structured into sequences and passed to a CNN-RNN model designed in the `utils` module.
+- **The dataset lacks proper temporal ordering**, as many images have missing year information, making chronological modeling difficult.  
+- **Texture and brushstrokes are crucial** for classification. To capture these, a **Gabor filter** was applied for texture enhancement, and a **pretrained ConvNeXt model (ImageNet-trained)** was used to extract deep features.  
+- **Feature sequences** were generated and **passed to a CNN-RNN model** implemented in the `utils` module.  
+- **Data augmentation was avoided** (e.g., MixUp, jittering, contrast adjustments) to **preserve artistic integrity**. Instead, **class imbalance was handled using a weighted class approach**.  
 
-Data augmentation techniques such as MixUp, jittering, and contrast adjustments were not applied. Since paintings are original artworks, applying such augmentations could alter the perspective and artistic intent, leading to misleading training signals. Instead of augmentation, class imbalance was handled using a weighted class approach for style classification.
+**Note:** Models were trained on an **NVIDIA Quadro P4000 (8GB VRAM)**.
+
 
 ## Implementation
 1. **Dataset Preparation:**
@@ -13,7 +16,7 @@ Data augmentation techniques such as MixUp, jittering, and contrast adjustments 
    - For artist classification: A total of **6900 images** were used.
    - For genre classification: A total of **10000 images** were used.
    - For style classification: A total of **1400 images** were used.
-   - The dataset was created using the `CreateDataset` utility, ensuring proper file structure and format.
+   - The dataset was created using the `prepare_data.py` utility, ensuring proper file structure and format.
 
    ```python
    csv_file = "/path/to/style_train.csv"
@@ -40,7 +43,7 @@ Data augmentation techniques such as MixUp, jittering, and contrast adjustments 
    **Note:** For style classification, the `train.py` and `trainer` files were modified to accept class weights to handle class imbalance effectively.
 
 2. **Data Preparation:**
-   - Once the dataset was created, the `prepare_data` module was used to preprocess the images and prepare them for training.
+   - Once the dataset was created, the `prepare_data.py` module was used to preprocess the images and prepare them for training.
 
 3. **Model Training:**
    - The `train.py` script from the repository was used to train the model.
@@ -113,19 +116,6 @@ The performance of the CNN-RNN model was evaluated for artist, genre, and style 
 
 ### Class-wise Classification Reports
 
-#### Style Classification Report
-
-| Style                     | Precision  | Recall | F1-score |
-|---------------------------|------------|--------|----------|
-| Abstract Expressionism    | 0.24       | 0.24   | 0.24     | 
-| Analytical Cubism         | 0.71       | 0.60   | 0.65     |
-| Art Nouveau               | 0.30       | 0.24   | 0.27     |
-| Baroque                   | 0.17       | 0.16   | 0.16     |
-| Color Field Painting      | 0.61       | 0.68   | 0.64     |
-| Minimalism                | 0.58       | 0.84   | 0.69     |
-| Synthetic Cubism          | 0.45       | 0.88   | 0.59     |
-| Ukiyo-e                   | 0.88       | 0.84   | 0.86     |
-
 #### Genre Classification Report
 
 | Genre                  | Precision  | Recall | F1-score |
@@ -142,22 +132,63 @@ The performance of the CNN-RNN model was evaluated for artist, genre, and style 
 
 #### Artist Classification Report
 
-| Artist                | Precision  | Recall | F1-score |
-|-----------------------|------------|--------|----------|
-| Albrecht Durer        | 0.86       | 0.60   | 0.71     |
-| Boris Kustodiev       | 0.34       | 0.50   | 0.41     |
-| Camille Pissarro      | 0.88       | 0.70   | 0.78     |
-| Childe Hassam         | 0.64       | 0.80   | 0.71     |
-| Claude Monet          | 0.62       | 0.40   | 0.48     |
-| Edgar Degas           | 0.60       | 0.45   | 0.51     |
-| Eugene Boudin         | 0.87       | 1.00   | 0.93     |
-| Gustave Dore          | 0.94       | 0.75   | 0.83     |
-| Ilya Repin            | 0.60       | 0.30   | 0.40     |
-| Ivan Aivazovsky       | 1.00       | 0.85   | 0.92     |
-| Ivan Shishkin         | 0.77       | 0.85   | 0.81     |
-| Raphael Kirchner      | 0.72       | 0.90   | 0.80     |
-| Rembrandt             | 0.68       | 0.75   | 0.71     |
-| Vincent van Gogh      | 0.31       | 0.85   | 0.45     |
+| Artist              | Precision  | Recall | F1-score |
+|---------------------|------------|--------|----------|
+| Albrecht Durer      | 0.86       | 0.60   | 0.71     |
+| Boris Kustodiev     | 0.34       | 0.50   | 0.41     |
+| Camille Pissarro    | 0.88       | 0.70   | 0.78     |
+| Childe Hassam       | 0.64       | 0.80   | 0.71     |
+| Claude Monet        | 0.62       | 0.40   | 0.48     |
+| Edgar Degas         | 0.60       | 0.45   | 0.51     |
+| Eugene Boudin       | 0.87       | 1.00   | 0.93     |
+| Gustave Dore        | 0.94       | 0.75   | 0.83     |
+| Ilya Repin          | 0.60       | 0.30   | 0.40     |
+| Ivan Aivazovsky     | 1.00       | 0.85   | 0.92     |
+| Ivan Shishkin       | 0.77       | 0.85   | 0.81     |
+| John Singer Sargent | 0.60       | 0.45   | 0.51     |
+| Marc Chagall        | 0.55       | 0.55   | 0.55     |
+| Martiros Saryan     | 1.00       | 0.65   | 0.79     |
+| Nicholas Roerich    | 0.86       | 0.95   | 0.90     |
+| Pablo Picasso       | 0.45       | 0.75   | 0.57     |
+| Paul Cezanne        | 0.57       | 0.20   | 0.30     |
+| Pierre-Auguste Renoir| 0.85      | 0.55   | 0.67     |
+| Pyotr Konchalovsky  | 0.56       | 0.70   | 0.62     |
+| Raphael Kirchner    | 0.72       | 0.90   | 0.80     |
+| Rembrandt           | 0.68       | 0.75   | 0.71     |
+| Salvador Dali       | 0.40       | 0.20   | 0.27     |
+| Vincent van Gogh    | 0.31       | 0.85   | 0.45     |
+
+#### Style Classification Report
+
+| Style                     | Precision  | Recall | F1-score |
+|---------------------------|------------|--------|----------|
+| Abstract Expressionism    | 0.24       | 0.24   | 0.24     |
+| Action Painting           | 0.92       | 0.44   | 0.59     |
+| Analytical Cubism         | 0.71       | 0.60   | 0.65     |
+| Art Nouveau               | 0.30       | 0.24   | 0.27     |
+| Baroque                   | 0.17       | 0.16   | 0.16     |
+| Color Field Painting      | 0.61       | 0.68   | 0.64     |
+| Contemporary Realism      | 0.31       | 0.68   | 0.43     |
+| Cubism                    | 0.21       | 0.20   | 0.20     |
+| Early Renaissance         | 0.59       | 0.52   | 0.55     |
+| Expressionism             | 0.60       | 0.12   | 0.20     |
+| Fauvism                   | 0.44       | 0.32   | 0.37     |
+| High Renaissance          | 0.18       | 0.12   | 0.14     |
+| Impressionism             | 0.39       | 0.36   | 0.38     |
+| Mannerism/Late Renaissance| 0.28       | 0.40   | 0.33     |
+| Minimalism                | 0.58       | 0.84   | 0.69     |
+| Naïve Art / Primitivism   | 0.20       | 0.08   | 0.11     |
+| New Realism               | 0.27       | 0.12   | 0.17     |
+| Northern Renaissance      | 0.18       | 0.28   | 0.22     |
+| Pointillism               | 0.94       | 0.68   | 0.79     |
+| Pop Art                   | 0.50       | 0.32   | 0.39     |
+| Post-Impressionism        | 0.19       | 0.16   | 0.17     |
+| Realism                   | 0.23       | 0.28   | 0.25     |
+| Rococo                    | 0.24       | 0.60   | 0.34     |
+| Romanticism               | 0.29       | 0.16   | 0.21     |
+| Symbolism                 | 0.31       | 0.20   | 0.24     |
+| Synthetic Cubism          | 0.45       | 0.88   | 0.59     |
+| Ukiyo-e                   | 0.88       | 0.84   | 0.86     |
 
 ### Conclusion
 The model performs well in genre classification and shows good results for artist classification. However, style classification has relatively lower accuracy, indicating room for improvement. Future work can explore better feature extraction techniques and additional class balancing strategies to enhance performance.
