@@ -72,7 +72,7 @@ Where:
 - $\sigma$ is standard deviation
 - $\gamma$ is spatial aspect ratio
 
-### Results : Predictions vs Ground Truth
+### Results : Predictions vs Ground Truth(used as GT in below image)
 ![Model Classification Results](assets/task1/predictions.png)
 
 ### Evaluation Metrics  
